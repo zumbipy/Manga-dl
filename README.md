@@ -1,6 +1,6 @@
 # Dmanga
 #### Descrição:
-	web scraping python onde acessa uma pagina de leitura de manda ou Hqs é baixa os capitulos.
+	web scraping python onde acessa uma pagina de leitura de manga ou Hqs é baixa os capitulos.
 
 **Depedencias:**
 
