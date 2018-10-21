@@ -1,11 +1,12 @@
-from Dmanga import DownloadManga
+from downloadmanga import DownloadManga
+from unionmangas import UnioMangas
 
-url = 'http://unionmangas.site/manga/world-trigger'
-site = DownloadManga(url)
+url = 'http://unionmangas.site/manga/no-doubt-in-us'
 
-print(site)
-links = site.list_link
-links.reverse()
+manga_pagina = UnioMangas(url)
 
-for l in links:
-    print(l)
+dic_conteudo = manga_pagina()
+
+programa = DownloadManga(dic_conteudo)
+programa.criar_dir_principal()
+programa.criar_pasta_cap()
