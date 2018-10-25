@@ -5,5 +5,4 @@
 **Depedencias:**
 
 >     pip install requests
->     pip install wget
 >     pip install bs4
