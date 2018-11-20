@@ -6,44 +6,55 @@ class DownloadManga(object):
     "Esta class é responsavel por gerenciar as pastas e baixa as imagens"
 
     def __init__(self, dicionario_conteudo):
-        self.dic_conteudo = dicionario_conteudo
-        self.pasta_principal = dicionario_conteudo['Titulo'].replace(" ", "_")
+        self.pastaTitulo = dicionario_conteudo['Titulo'].replace(" ", "_")
+        self.conteudo = dicionario_conteudo
+        self.titulo = self.conteudo.get("Titulo", None)
+        self.totalCapitulos = self.conteudo.get('TotalCapitulos', None)
+        self.url = self.conteudo.get('Url', None)
+        self.linksCapitulos = self.conteudo['LinksCapitulos']
     
-    def criar_dir_principal(self):
-        if self.verificar_dir_existe(self.pasta_principal):
-            return f'Pasta {self.pasta_principal} já foi criada.'
+    def criarPastaTitulo(self):
+        "Criar a pasta raiz com Titulo do manga."
+
+        if self.verificarDirTitulo(self.pastaTitulo):
+            return f'Pasta {self.pastaTitulo} já existe.'
         else:
-            os.mkdir(self.pasta_principal)
-            return f'Pasta {self.pasta_principal} foi criada.'
+            os.mkdir(self.pastaTitulo)
+            return f'Pasta {self.pastaTitulo} foi criada.'
 
     
-    def criar_pasta_cap(self):
-        os.chdir(self.pasta_principal)  # Entra na pasta.
+    def criarPastaCapitulo(self):
+        "Criar as pastas dos capitulos dos mangas."
 
-        lista_chaves = list(self.dic_conteudo['LinksCapitulos'].keys())
+        os.chdir(self.pastaTitulo)  # Entra na pasta.
+
+        lista_chaves = list(self.conteudo['LinksCapitulos'].keys())
         lista_chaves.sort()
 
         for pasta in lista_chaves:
-            link = self.dic_conteudo['LinksCapitulos'][pasta]
-            if self.verificar_dir_existe(pasta):
+            link = self.conteudo['LinksCapitulos'][pasta]
+            if self.verificarDirTitulo(pasta):
                 print(f'pasta {pasta} já existe')
             else:
                 os.mkdir(pasta)
                 os.chdir(pasta)
                 for img in link:
-                    self.download_img(img)
+                    self.downloadImagem(img)
                 os.chdir('..')
                 
-
-    def verificar_dir_existe(self, Nome_pasta):
-        lista_pasta = os.listdir()
-        if Nome_pasta in lista_pasta:
+    @staticmethod
+    def verificarDirTitulo(nomePasta):
+        "Verifica se pasta principal do downloand existe."
+        
+        listaPasta = os.listdir()
+        if nomePasta in listaPasta:
             return True
         else: 
             return False
     
-    
-    def download_img(self, url):
+    @staticmethod
+    def downloadImagem(url):
+        "Recebe o link do capitulo e baixa as imagens. "
         *_ , nome = url.split("/")
         imagem = requests.get(url)
         if imagem.status_code == 200:

@@ -1,12 +1,10 @@
 from downloadmanga import DownloadManga
 from unionmangas import UnioMangas
 
-url = 'http://unionmangas.site/manga/no-doubt-in-us'
 
-manga_pagina = UnioMangas(url)
+if __name__ == "__main__":
+    url = 'http://unionmangas.top/manga/charlotte-the-4-koma-seshun-o-kakenukero&ot=1542683993'
 
-dic_conteudo = manga_pagina()
-
-programa = DownloadManga(dic_conteudo)
-programa.criar_dir_principal()
-programa.criar_pasta_cap()
+    baixaComteudo = DownloadManga(UnioMangas().get(url))
+    baixaComteudo.criarPastaTitulo()
+    baixaComteudo.criarPastaCapitulo()
