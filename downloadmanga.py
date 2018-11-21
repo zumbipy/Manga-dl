@@ -2,6 +2,7 @@ import os
 import os.path
 import requests
 
+
 class DownloadManga(object):
     "Esta class é responsavel por gerenciar as pastas e baixa as imagens"
 
@@ -12,7 +13,7 @@ class DownloadManga(object):
         self.totalCapitulos = self.conteudo.get('TotalCapitulos', None)
         self.url = self.conteudo.get('Url', None)
         self.linksCapitulos = self.conteudo['LinksCapitulos']
-    
+
     def criarPastaTitulo(self):
         "Criar a pasta raiz com Titulo do manga."
 
@@ -22,7 +23,6 @@ class DownloadManga(object):
             os.mkdir(self.pastaTitulo)
             return f'Pasta {self.pastaTitulo} foi criada.'
 
-    
     def criarPastaCapitulo(self):
         "Criar as pastas dos capitulos dos mangas."
 
@@ -41,23 +41,22 @@ class DownloadManga(object):
                 for img in link:
                     self.downloadImagem(img)
                 os.chdir('..')
-                
+
     @staticmethod
     def verificarDirTitulo(nomePasta):
         "Verifica se pasta principal do downloand existe."
-        
+
         listaPasta = os.listdir()
         if nomePasta in listaPasta:
             return True
-        else: 
+        else:
             return False
-    
+
     @staticmethod
     def downloadImagem(url):
         "Recebe o link do capitulo e baixa as imagens. "
-        *_ , nome = url.split("/")
+        *_, nome = url.split("/")
         imagem = requests.get(url)
         if imagem.status_code == 200:
             with open(nome, 'wb') as f:
                 f.write(imagem.content)
-            
