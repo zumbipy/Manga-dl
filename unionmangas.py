@@ -10,6 +10,7 @@ class UnioMangas():
         "Recebe url e rertona um Dict()."
 
         self.__soup = self.__pagina_soup(url)
+        print("Analisando link isso pode demorar alguns minutos.")
         self.__Titulo = self.__soup.h2.text
 
         self.conteudo = {
@@ -54,5 +55,5 @@ class UnioMangas():
             except:
                 print(f"Tentativa de connectar {tentativas}")
                 tentativas += 1
-        print("Ops Ocorreu um erro o programa foi finalizado.")
+        print("Error Url com problema ou sem internet ...")
         exit()
