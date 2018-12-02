@@ -18,15 +18,15 @@ class DownloadManga(object):
         "Criar a pasta raiz com Titulo do manga."
 
         if self.verificarDirTitulo(self.pastaTitulo):
-            return f'Pasta {self.pastaTitulo} já existe.'
+            print(f'Pasta {self.pastaTitulo} já existe.')
         else:
             os.mkdir(self.pastaTitulo)
-            return f'Pasta {self.pastaTitulo} foi criada.'
+            print(f'Pasta {self.pastaTitulo} foi criada.')
 
     def criarPastaCapitulo(self):
         "Criar as pastas dos capitulos dos mangas."
 
-        os.chdir(self.pastaTitulo)  # Entra na pasta.
+        os.chdir(self.pastaTitulo)  # Entra na pasta Titulo
 
         lista_chaves = list(self.conteudo['LinksCapitulos'].keys())
         lista_chaves.sort()
@@ -37,10 +37,29 @@ class DownloadManga(object):
                 print(f'pasta {pasta} já existe')
             else:
                 os.mkdir(pasta)
-                os.chdir(pasta)
-                for img in link:
-                    self.downloadImagem(img)
-                os.chdir('..')
+                print(f"Pasta {pasta} foi crianda.")
+
+        os.chdir('..')  #Sai da pasta.
+
+    def downConteudo(self):
+        "Entra nas pastas é salva as imagens dentro delas."
+
+        os.chdir(os.path.join(os.path.join(
+            os.path.abspath('')), self.pastaTitulo))
+        lista_chaves = list(self.conteudo['LinksCapitulos'].keys())
+        lista_chaves.sort()
+        print("Iniciando Donwload...")
+        for nomeCapitulo in lista_chaves:
+            os.chdir(nomeCapitulo)
+            print(f'    {nomeCapitulo}')
+            for link in self.conteudo['LinksCapitulos'][nomeCapitulo]:
+                *_, nomeImagem = link.split("/")
+                self.downloadImagem(link)
+                print(f"        {nomeImagem} concluido.")
+            os.chdir('..')
+
+        os.chdir('..')  # Volta pra pasta raiz do codigo.
+        print("Download Completo")
 
     @staticmethod
     def verificarDirTitulo(nomePasta):
@@ -54,9 +73,11 @@ class DownloadManga(object):
 
     @staticmethod
     def downloadImagem(url):
-        "Recebe o link do capitulo e baixa as imagens. "
-        *_, nome = url.split("/")
+        "Baixa as imagens. "
+
+        *_, nomeImagem = url.split("/")
         imagem = requests.get(url)
+        
         if imagem.status_code == 200:
-            with open(nome, 'wb') as f:
+            with open(nomeImagem, 'wb') as f:
                 f.write(imagem.content)
