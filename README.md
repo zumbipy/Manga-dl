@@ -6,7 +6,8 @@
 
 >     pip install requests
 >     pip install bs4
-
+ou
+>     pip install -r requisitos.txt  
 **Modo de usar:**  
 > Entre dentro da pasta onde esta o programa.  
 > Depois exercute ele no terminal.  
