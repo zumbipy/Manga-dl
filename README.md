@@ -1,7 +1,7 @@
 # Dmanga
 #### Descrição:
 	web scraping python onde acessa uma pagina de leitura de manga ou Hqs é baixa os capitulos.
-
+## Só fucionar com os mangas do site https://unionmangas.top  
 **Depedencias:**
 
 >     pip install requests
