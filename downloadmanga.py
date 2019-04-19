@@ -4,7 +4,7 @@ import requests
 
 
 class DownloadManga(object):
-    "Esta class é responsavel por gerenciar as pastas e baixa as imagens"
+    "Esta class é responsável por gerenciar as pastas e baixa as imagens"
 
     def __init__(self, dicionario_conteudo):
         self.pastaTitulo = dicionario_conteudo['Titulo'].replace(" ", "_")
@@ -81,3 +81,4 @@ class DownloadManga(object):
         if imagem.status_code == 200:
             with open(nomeImagem, 'wb') as f:
                 f.write(imagem.content)
+    
