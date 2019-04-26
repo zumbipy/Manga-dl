@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 autopep8 = "*"
+pytest = "*"
 
 [packages]
 bs4 = "==0.0.1"
