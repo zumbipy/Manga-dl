@@ -19,7 +19,7 @@ def test_pagina_soup():
 
 def test_conteudo_dic():
     conteudo_test = {
-            #'Titulo': '',
+            'Titulo': '',
             'LinksCapitulos': '',
             'TotalCapitulos': '',
             'Url': '' 

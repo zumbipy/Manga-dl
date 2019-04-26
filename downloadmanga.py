@@ -13,7 +13,6 @@ class DownloadManga(object):
         self.url = self.conteudo.get('Url', None)
         self.linksCapitulos = self.conteudo['LinksCapitulos']
 
-
     def criarPastaTitulo(self):
         "Criar a pasta raiz com Titulo do manga."
 
@@ -81,6 +80,7 @@ class DownloadManga(object):
         if imagem.status_code == 200:
             with open(nomeImagem, 'wb') as f:
                 f.write(imagem.content)
+
     @staticmethod
     def url_valido(url):
         dic_site = {
