@@ -1,26 +1,28 @@
 
 import sys
+import os.path
 from downloadmanga import DownloadManga
 from unionmangas import UnioMangas
 
+print(f"""
++-----------------------------------------------------------+
+|     __  __         Downloand de Mangas.           _   _   |
+|    |  \/  |  __ _   _ _    __ _   __ _   ___   __| | | |  |
+|    | |\/| | / _` | | ' \  / _` | / _` | |___| / _` | | |  |
+|    |_|  |_| \__,_| |_||_| \__, | \__,_|       \__,_| |_|  |
+|                            |___/         Versão: 3.0 beta |
++-----------------------------------------------------------+
+Pasta Atual: {os.path.basename(os.path.abspath(''))}
+""")
 
-def siteAceito(url, dic_url):
-    for url_aceitos in dic_url.values():
-        if url.startswith(url_aceitos):
-            return True
-    else:
-        return False
+url_manga = input("Digite a URL da Pagina do Manga: ").replace(' ','')  # Remove os espaços.
 
-dic_url = {
-    'Union Mangas':'https://unionmangas.top/'
-}
+# Verifica se a Url é aceita pelo programa.
+if DownloadManga.url_valido(url_manga):
+    print(f"URL é valido...")
+    print("\nComeçando o processo...")
+else:
+    print("URL invalida!!!")
+    sys.exit()  # Para o programa se a url for invalida.
 
-if __name__ == "__main__":
-    url = input("Digite o Link do site do manga: ")
-    if siteAceito(url, dic_url):
-        baixaConteudo = DownloadManga(UnioMangas().get(url))
-        baixaConteudo.criarPastaTitulo()
-        baixaConteudo.criarPastaCapitulo()
-        baixaConteudo.downConteudo()
-    else:
-        print(f"Site {url} não tem suporte.")
+conteudo = UnioMangas().get(url_manga)  # Analiza a Url e retorna um dicionario com todo o conteudo.
