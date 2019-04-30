@@ -36,15 +36,14 @@ class DownloadManga(object):
                 print(f'pasta {pasta} já existe')
             else:
                 os.mkdir(pasta)
-                print(f"Pasta {pasta} foi crianda.")
+                print(f"Pasta {pasta} foi criada.")
 
         os.chdir('..')  # Sai da pasta.
 
     def downConteudo(self):
         "Entra nas pastas é salva as imagens dentro delas."
 
-        os.chdir(os.path.join(os.path.join(
-            os.path.abspath('')), self.pastaTitulo))
+        os.chdir(os.path.join(os.path.join(os.path.abspath('')), self.pastaTitulo))
         lista_chaves = list(self.conteudo['LinksCapitulos'].keys())
         lista_chaves.sort()
         print("Iniciando Donwload...")

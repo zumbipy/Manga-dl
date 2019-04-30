@@ -1,4 +1,3 @@
-
 import sys
 import os.path
 from downloadmanga import DownloadManga
@@ -26,3 +25,7 @@ else:
     sys.exit()  # Para o programa se a url for invalida.
 
 conteudo = UnioMangas().get(url_manga)  # Analiza a Url e retorna um dicionario com todo o conteudo.
+donwManga = DownloadManga(conteudo)
+donwManga.criarPastaTitulo()
+donwManga.criarPastaCapitulo()
+donwManga.downConteudo()
