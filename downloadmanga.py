@@ -83,7 +83,7 @@ class DownloadManga(object):
     @staticmethod
     def url_valido(url):
         dic_site = {
-            'Union Mangas': 'https://unionmangas.top/'
+            'Union Mangas': 'https://unionleitor.top/'
         }
         for value in dic_site.values():
             if url.startswith(value):
