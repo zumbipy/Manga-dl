@@ -48,4 +48,4 @@ Exercutando o Programa:
 ## Sites Suportados:
 |           Site          | Status |
 | :---------------------- | :----: |
-| https://unionmangas.top |   ok   |
+| https://unionleitor.top/ |   ok   |
