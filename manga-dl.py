@@ -21,6 +21,7 @@ Pasta Atual: {os.path.basename(os.path.abspath(''))}
 url_manga = input("Digite a URL da Pagina do Manga: ").replace(' ','')  # Remove os espaços.
 
 if url_manga.startswith('https://unionleitor.top/'):
+    print("Link Valido Iniciando Analise do conteudo.")
     down = UnionLeitor(url_manga)
 
     title_folder = down.content['Title']
@@ -28,12 +29,14 @@ if url_manga.startswith('https://unionleitor.top/'):
     chapters_folder.sort()
 
     Manage().create_folder(title_folder)
+    print(f"Criando pasta {title_folder}...")
 
     for folder in chapters_folder:
         base_dir = os.path.join(title_folder, folder)
         Manage().create_folder(base_dir)
+        print(f"    Criando pasta {folder}...")
 
         for url in down.content['Chapters'][folder]:
             Download().image(url, base_dir)
-
-
+            print(f"        Download da Imagem {url.split('/')[-1]}" , end='')
+            print('\b'*60, end='', flush=True)
