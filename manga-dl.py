@@ -38,5 +38,4 @@ if url_manga.startswith('https://unionleitor.top/'):
 
         for url in down.content['Chapters'][folder]:
             Download().image(url, base_dir)
-            print(f"        Download da Imagem {url.split('/')[-1]}" , end='')
-            print('\b'*60, end='', flush=True)
+
