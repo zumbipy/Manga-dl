@@ -21,7 +21,7 @@ Pasta Atual: {os.path.basename(os.path.abspath(''))}
 url_manga = input("Digite a URL da Pagina do Manga: ").replace(' ','')  # Remove os espaços.
 
 if url_manga.startswith('https://unionleitor.top/'):
-    print("Link Valido Iniciando Analise do conteudo.")
+    print("Link Valido.\n Iniciando Analise do conteudo.")
     down = UnionLeitor(url_manga)
 
     title_folder = down.content['Title']
@@ -39,3 +39,6 @@ if url_manga.startswith('https://unionleitor.top/'):
         for url in down.content['Chapters'][folder]:
             Download().image(url, base_dir)
 
+else:
+
+    print("link invalido...")
