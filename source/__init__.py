@@ -1,6 +1,5 @@
 dict_url = {
-    "Unionleitor": "unionleitor.top",
-    "Neoxscan": "neoxscan.com",
+    "Union Manga": "unionmangas.top",
 }
 
 

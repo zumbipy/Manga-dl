@@ -9,9 +9,6 @@
 
     pip install bs4 requests tqdm
 
-Ou
-
-    poetry install
 
 > Exercutando o Programa:  
 > Vá ate a pasta do programa e rode o arquivo manga-dl.py  
