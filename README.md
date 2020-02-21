@@ -29,7 +29,7 @@ Pasta Atual: Manga-dl
 > Agora coloca a Url(link) da pagina onde esta todos os capitulos do manda.
 
 ```bash
-Digite a URL da Pagina do Manga: https://unionleitor.top/perfil-manga/yakedo-shoujo 
+Digite a URL da Pagina do Manga: https://unionmangas.top/perfil-manga/yakedo-shoujo
 ```
 
 ```bash
@@ -55,4 +55,4 @@ Criando pasta Yakedo Shoujo...
 
 ```
 > **Sites  Valido:**  
-> https://unionleitor.top/
+> https://unionmangas.top
