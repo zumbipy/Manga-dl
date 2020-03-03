@@ -1,6 +1,6 @@
+import time
 import requests
 import re
-import pprint
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
@@ -34,11 +34,27 @@ class UnionLeitor:
         # {Cap. 01: [list url]}
         dict_url = {}
         for url in list_url:
+            print(f"Analizando Pagina {url.text}\n", end='')
             dict_url[url.text] = self.__list_url_image(url.get("href"))
         return dict_url
 
     def __scraping_page(self, url=None):
+        conteudo = ''
         if url == None:
-            return BeautifulSoup(requests.get(self.url).content, "html.parser")
+            r = requests.get(self.url, stream=True)
+            with tqdm(total=100, unit='kb') as barra_download:
+                for i in r.iter_content(chunk_size=1024):
+                    conteudo += str(i)
+                    barra_download.update(1)
+                barra_download.update(barra_download.total - barra_download.n)
+
+            return BeautifulSoup(conteudo, "html.parser")
         else:
-            return BeautifulSoup(requests.get(url).content, "html.parser")
+            
+            r = requests.get(url, stream=True)
+            with tqdm(total=100, unit='kb') as barra_download:
+                for i in r.iter_content(chunk_size=1024):
+                    conteudo += str(i)
+                    barra_download.update(1)
+                barra_download.update(barra_download.total - barra_download.n)
+            return BeautifulSoup(conteudo, "html.parser")

@@ -13,7 +13,7 @@ class Download:
         *_, image_name = url.split("/")
         image = requests.get(url, stream=True)
 
-        file_size = int(image.headers.get('content-length'))
+        file_size = int(image.headers.get('content-length', 100))
         chunk_size = 1024  # 1 MB
         num_bars = int(file_size / chunk_size)
 
