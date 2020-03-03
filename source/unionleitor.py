@@ -2,6 +2,7 @@ import requests
 import re
 import pprint
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 
 class UnionLeitor:

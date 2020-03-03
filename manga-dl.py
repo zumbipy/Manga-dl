@@ -25,7 +25,7 @@ url_manga = input("Digite a URL da Pagina do Manga:\x1b[38;5;4m").replace(
 print("\x1b[0m", end="")  # Remove a cor do link do comando acima
 
 if is_valido_url(url_manga):
-    print("Link Valido.\n Iniciando Analise do conteudo.")
+    print("Iniciando Analise do conteudo.")
     down = UnionLeitor(url_manga)
 
     title_folder = down.content["Title"]
