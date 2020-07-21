@@ -38,7 +38,7 @@ class NeoxScans():
         lista_saida = []
         lista_tag_cap = self.souce_page.findAll("li", "wp-manga-chapter")
         for link in lista_tag_cap:
-            lista_saida.append(link.find("a").get("href"))
+            lista_saida.append(link.find("a").get("href")+"?style=list")
         return lista_saida
 
     def __dict_chapters_link(self):
@@ -64,5 +64,5 @@ class NeoxScans():
         title = self.souce_page.find("div", "post-title").text
         return title.strip()
 
-c = NeoxScans('https://neoxscans.com/manga/dark-star-emperor/')
+c = NeoxScans('https://neoxscans.com/manga/i-favor-the-villainess/')
 print(c.content)
