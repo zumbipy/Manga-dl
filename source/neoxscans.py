@@ -63,6 +63,3 @@ class NeoxScans():
     def __title_cap(self):
         title = self.souce_page.find("div", "post-title").text
         return title.strip()
-
-c = NeoxScans('https://neoxscans.com/manga/i-favor-the-villainess/')
-print(c.content)

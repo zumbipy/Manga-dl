@@ -3,6 +3,7 @@ import os
 from source.download import Download
 from source.manage import Manage
 from source.unionleitor import UnionLeitor
+from source.neoxscans import NeoxScans
 from source import is_valido_url
 
 versao = "Versão: 4.0.1"
@@ -19,15 +20,23 @@ Pasta Atual:\x1b[38;5;3m {os.path.basename(os.path.abspath(''))}\x1b[0m
 """
 )
 
-url_manga = input("Digite a URL da Pagina do Manga:\x1b[38;5;4m").replace(
-    " ", ""
-)  # Remove os espaços.
+url_manga = input("Digite a URL da Pagina do Manga:\x1b[38;5;4m").replace(" ", "")  # Remove os espaços.
 print("\x1b[0m", end="")  # Remove a cor do link do comando acima
 
 if is_valido_url(url_manga):
     print("Iniciando Analise do conteudo.")
-    down = UnionLeitor(url_manga)
 
+    if "https://neoxscans.com/" in url_manga:
+        down = NeoxScans(url_manga)
+        print("neoxscans")
+    elif "unionleitor.top" in url_manga:
+        down = UnionLeitor(url_manga)
+        print("unionleitor")
+    else:
+        down = UnionLeitor(url_manga)
+        print("UnionMnaga")
+
+    
     title_folder = down.content["Title"]
     chapters_folder = list(down.content["Chapters"].keys())
     chapters_folder.sort()

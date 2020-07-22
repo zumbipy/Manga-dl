@@ -1,6 +1,10 @@
+from source.neoxscans import NeoxScans
+from source.unionleitor import UnionLeitor
+
 dict_url = {
     "Union Manga": "unionmangas.top",
     "Union Leitor": "unionleitor.top",
+    "Neoxscans": "neoxscans.com"
 }
 
 
@@ -11,3 +15,4 @@ def is_valido_url(url):
             return False
         if name_site[2] == link:
             return True
+
