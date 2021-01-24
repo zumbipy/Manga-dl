@@ -6,7 +6,7 @@ class Diretorio(object):
 
     @staticmethod
     def criar(nomeDaPasta, local):
-        criarPasta = os.path.join(os.path.abspath(local), nomeDaPasta)
+        criarPasta = os.path.join(local, nomeDaPasta)
         os.makedirs(criarPasta, exist_ok=True)
 
 
