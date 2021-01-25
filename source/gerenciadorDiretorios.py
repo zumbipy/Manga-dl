@@ -8,6 +8,3 @@ class Diretorio(object):
     def criar(nomeDaPasta, local):
         criarPasta = os.path.join(local, nomeDaPasta)
         os.makedirs(criarPasta, exist_ok=True)
-
-
-Diretorio.criar('rogerio', '/mnt/BAF4F744F4F70185/Projetos/Manga-dl/')
